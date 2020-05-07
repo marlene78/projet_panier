@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Produit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ produit.nom }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td><a href="{{ asset("uploads/produitImg/" ~ produit.photo )}}" target="_blank" title="voir"><img src="{{ asset("uploads/produitImg/" ~ produit.photo )}}" style="width:8rem"></a></td>
+            </tr>
+            <tr>
+                <th>Quantite</th>
+                <td>{{ produit.quantite }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ produit.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('produit_index') }}">&#10229; {% trans %}Retour{% endtrans %}</a>
+
+
+    {{ include('produit/_delete_form.html.twig') }}
+</div>
+{% endblock %}

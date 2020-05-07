@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('produit_delete', {'id': produit.id}) }}" class="mt-5">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
+    <button class="btn btn-danger">{% trans %}Supprimer{% endtrans %}</button>
+</form>

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Ajouter un produit{% endtrans %}{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>{% trans %}Ajouter un produit{% endtrans %}</h1>
+
+    {{ include('produit/_form.html.twig') }}
+
+    <a href="{{ path('produit_index') }}">&#10229; {% trans %}Retour{% endtrans %}</a>
+</div>
+{% endblock %}
