@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PanierRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Panier
 {
@@ -17,10 +18,7 @@ class Panier
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $dateAjout;
+
 
     /**
      * @ORM\Column(type="boolean")
@@ -38,22 +36,17 @@ class Panier
      */
     private $produit;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateAjout;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateAjout(): ?\DateTimeInterface
-    {
-        return $this->dateAjout;
-    }
 
-    public function setDateAjout(\DateTimeInterface $dateAjout): self
-    {
-        $this->dateAjout = $dateAjout;
-
-        return $this;
-    }
 
     public function getEtat(): ?bool
     {
@@ -89,5 +82,30 @@ class Panier
         $this->produit = $produit;
 
         return $this;
+    }
+
+
+
+
+
+
+    public function getDateAjout(): ?\DateTimeInterface
+    {
+        return $this->dateAjout;
+    }
+
+    public function setDateAjout(\DateTimeInterface $dateAjout): self
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function Prepersist()
+    {
+        $this->dateAjout = new \Datetime(); 
     }
 }

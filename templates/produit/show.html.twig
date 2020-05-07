@@ -1,31 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}{% trans %}Produit{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="container mt-5">
-    <h1>Produit</h1>
+    <h1>{% trans %}Produit{% endtrans %} n°{{ produit.id }} </h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Nom</th>
+                <th>{% trans %}Nom{% endtrans %}</th>
+                <th>{% trans %}Photo{% endtrans %}</th>
+                <th>{% trans %}Quantité{% endtrans %}</th>
+                <th>{% trans %}Prix{% endtrans %}</th>
+            </tr>
+            <tr>
                 <td>{{ produit.nom }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
                 <td><a href="{{ asset("uploads/produitImg/" ~ produit.photo )}}" target="_blank" title="voir"><img src="{{ asset("uploads/produitImg/" ~ produit.photo )}}" style="width:8rem"></a></td>
-            </tr>
-            <tr>
-                <th>Quantite</th>
                 <td>{{ produit.quantite }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
                 <td>{{ produit.prix }}</td>
             </tr>
+       
         </tbody>
     </table>
+        
+    <h3>{% trans %}Ajouter au panier{% endtrans %}</h3>
+        
+    {{ include('produit/_form_add_panier.html.twig') }}
+   
 
     <a href="{{ path('produit_index') }}">&#10229; {% trans %}Retour{% endtrans %}</a>
 
