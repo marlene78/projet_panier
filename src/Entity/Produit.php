@@ -131,7 +131,7 @@ class Produit
     {
         if ($this->paniers->contains($panier)) {
             $this->paniers->removeElement($panier);
-            // set the owning side to null (unless already changed)
+          
             if ($panier->getProduit() === $this) {
                 $panier->setProduit(null);
             }
