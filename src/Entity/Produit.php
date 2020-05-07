@@ -11,7 +11,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
- * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("nom", message="Ce produit existe déjà")
  */
 class Produit
@@ -25,6 +24,7 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $nom;
 
@@ -36,11 +36,13 @@ class Produit
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $quantite;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $prix;
 
@@ -138,12 +140,12 @@ class Produit
         return $this;
     }
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function Prepersist()
+
+    public function __toString()
     {
-        $this->date = new \Datetime("now"); 
+
+        return $this->nom; 
     }
+
 
 }

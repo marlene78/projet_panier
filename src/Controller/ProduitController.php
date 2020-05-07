@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
@@ -91,4 +92,36 @@ class ProduitController extends AbstractController
 
         return $this->redirectToRoute('produit_index');
     }
+
+
+    /**
+     * Permet d'ajouter un produit au panier
+     * @Route("/produit/add/panier/{id}" , name="add_panier" , methods={"POST"})
+     */
+    public function addPanier(Request $request , Produit $produit , TranslatorInterface $translator)
+    {
+        $quantite = $request->request->get('quantite'); 
+
+        $Panier = new Panier(); 
+        $Panier->setProduit($produit); 
+        $Panier->setQuantite($quantite); 
+        $Panier->setEtat(0); 
+
+        $quantite_produit = $produit->getQuantite() - $quantite ; 
+
+        $produit->setQuantite($quantite_produit); 
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($Panier); 
+        $em->flush(); 
+
+        $message = $translator->trans('Produit ajouté au panier');
+        $this->addFlash("success" , $message ); 
+
+        return $this->redirectToRoute('produit_index');
+
+    }
+
+
+
 }

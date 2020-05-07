@@ -4,6 +4,7 @@ Accueil: Home
 Produit ajouté: Added product
 Liste des produits: Products List
 Nom: Name
+Quantité commandée: Ordered quantity
 Quantité: Quantity
 Prix: Price
 €: $
@@ -12,3 +13,15 @@ Retour: Return
 Valider: Validate
 Supprimer: Delete
 Produit supprimé: Deleted product
+Ajouter: Add
+Ajouter au panier: Add to Cart
+Produit ajouté au panier: Product added to shopping cart
+Produit retiré du panier: Product removed from cart
+Panier vide: Empty
+Produit: Product
+Montant: Amount
+Panier: Shopping cart
+Nombre de produit: Number of product
+Payer: Pay
+Une erreur s'est produite: An error has occurred
+
